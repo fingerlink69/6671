@@ -1,0 +1,6 @@
+{
+  "calendarLimitExpression": "CALENDAR_MONTH_OF_YEAR(12)",
+  "calendarType": "CAL_SELECT",
+  "calendars": "WeekDays_ALL_MonthDays_ALL_Months_ALL",
+  "resourceType": "CALENDAR"
+}
