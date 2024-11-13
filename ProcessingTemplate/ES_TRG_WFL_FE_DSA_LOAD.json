@@ -1,0 +1,25 @@
+{
+  "description": "Uruchomienie procesu ładującego dane do Stage",
+  "priority": "0",
+  "processingType": "TRIGGER",
+  "tags": 
+  [
+    "DONE",
+    "DSA",
+    "FRAMEWORK"
+  ],
+  "triggerType": "EVENT",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "WFL_FE_DSA_LOAD",
+      "priority": "0",
+      "processingTemplate": "WFL_FE_DSA_LOAD",
+      "processingType": "WORKFLOW",
+      "weight": "1",
+      "workflowType": "FOR_EACH"
+    }
+  ]
+}
