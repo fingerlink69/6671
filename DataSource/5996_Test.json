@@ -1,0 +1,7 @@
+{
+  "dataSourceType": "LOCAL_KEY_VALUE_STORE",
+  "dataType": "STRING",
+  "description": "Testing for 5996",
+  "errorHandling": "INIT",
+  "validity": "FREE"
+}
