@@ -1,7 +1,10 @@
 {
   "description": "Uruchomienie procesu ładującego dane do Stage",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "TRIGGER",
+  "statisticMethod": "MEDIAN",
+  "statisticPeriod": "ALL",
   "tags": 
   [
     "DONE",
@@ -18,6 +21,8 @@
       "priority": "0",
       "processingTemplate": "WFL_FE_DSA_LOAD",
       "processingType": "WORKFLOW",
+      "statisticMethod": "MEDIAN",
+      "statisticPeriod": "ALL",
       "weight": "1",
       "workflowType": "FOR_EACH"
     }
