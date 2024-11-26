@@ -1,0 +1,166 @@
+{
+  "description": "Get Ctask using sys_id from servicenow",
+  "endpoint": "ServiceNow.IncMgmt.Gbl.ep",
+  "endpointType": "REST_WEB_SERVICE",
+  "folder": "MQ-AUTO",
+  "node": "AnowEngine.Rest.rr",
+  "owner": "lpopov",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "REST_WEB_SERVICE",
+  "statisticMethod": "MEDIAN",
+  "statisticPeriod": "ALL",
+  "tags": 
+  [
+    "MQAuto",
+    "NotMonitored"
+  ],
+  "taskType": "REST_WEB_SERVICE_CALL",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "body": "",
+    "headers": "responseTimeout=60\n",
+    "method": "GET",
+    "parameters": "sysparm_limit=10\nactive=true\nsys_id=${sys_id_internal}",
+    "responseBodyVariable": "DetailRequest",
+    "resultVariableLevel": "PARENT",
+    "saveResponseBody": false,
+    "url": "api/now/table/change_task"
+  },
+  "actions": 
+  [
+    {
+      "processingActionType": "RESTART",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "PROCESSING_FAILED",
+      "processingCommand": {
+        "actionTargetType": "SELF",
+        "keepForcedStatus": true,
+        "restartCounter": 5,
+        "restartDelay": 300000,
+        "restartFailedOnly": true,
+        "restartMode": "COUNTER",
+        "restartType": "RESTART_FROM_BEGINNING"
+      }
+    },
+    {
+      "processingActionType": "REMOVE_TAG",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "PROCESSING_FAILED",
+      "condition": {
+        "criteria": 
+        [
+          {
+            "fieldName": "${timesRestarted}",
+            "operator": "GE_NUM",
+            "value": "5"
+          }
+        ],
+        "operator": "AND"
+      },
+      "processingCommand": {
+        "actionTargetType": "SELF",
+        "keepForcedStatus": true,
+        "operator": "",
+        "restartType": "RESTART_FROM_BEGINNING",
+        "value": "NotMonitored"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "RESOURCE",
+      "name": "ServiceNow.Gbl.sem",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "resource": "ServiceNow.Gbl.sem",
+      "resourceType": "BINARY_SEMAPHORE",
+      "semaphoreState": "ON",
+      "serverNodeType": "REST_WEB_SERVICE",
+      "taskType": "REST_WEB_SERVICE_CALL"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "editorType": "OUTPUT",
+      "name": "ctask_short_description",
+      "outputFormat": "JSON",
+      "title": "Ctask Short Description",
+      "outputDefinition": {
+        "dataPath": "$.result[0].short_description",
+        "outputLevel": "PARENT"
+      }
+    },
+    {
+      "allowExpressions": true,
+      "defaultValue": "5717fb273bcd86d0cc91a44a85e45aa4",
+      "editorType": "TEXT",
+      "name": "sys_id_internal",
+      "required": true,
+      "title": "Sys ID"
+    },
+    {
+      "editorType": "OUTPUT",
+      "name": "ctask_number",
+      "outputFormat": "JSON",
+      "title": "Ctask number",
+      "outputDefinition": {
+        "dataPath": "$.result[0].number",
+        "outputLevel": "PARENT"
+      }
+    },
+    {
+      "editorType": "OUTPUT",
+      "name": "ctask_sys_id",
+      "outputFormat": "JSON",
+      "title": "ctask_sys_id",
+      "outputDefinition": {
+        "dataPath": "$.result[0].sys_id",
+        "outputLevel": "PARENT"
+      }
+    },
+    {
+      "editorType": "OUTPUT",
+      "name": "ctask_state",
+      "outputFormat": "JSON",
+      "title": "State",
+      "outputDefinition": {
+        "dataPath": "$.result[0].state",
+        "outputLevel": "PARENT"
+      }
+    },
+    {
+      "editorType": "OUTPUT",
+      "name": "ctask_start",
+      "outputFormat": "JSON",
+      "title": "Ctask start",
+      "outputDefinition": {
+        "dataPath": "$.result[0].work_start",
+        "outputLevel": "PARENT"
+      }
+    },
+    {
+      "editorType": "OUTPUT",
+      "name": "ctask_end",
+      "outputFormat": "JSON",
+      "title": "Ctask end",
+      "outputDefinition": {
+        "dataPath": "$.result[0].work_end",
+        "outputLevel": "PARENT"
+      }
+    },
+    {
+      "editorType": "OUTPUT",
+      "name": "result",
+      "outputFormat": "JSON",
+      "title": "Result",
+      "outputDefinition": {
+        "dataPath": "$.result",
+        "outputLevel": "PARENT"
+      }
+    }
+  ]
+}
