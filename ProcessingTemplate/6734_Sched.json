@@ -1,0 +1,33 @@
+{
+  "description": "test for case 6734",
+  "onHold": true,
+  "owner": "bien",
+  "priority": "0",
+  "processingType": "TRIGGER",
+  "statisticMethod": "MEDIAN",
+  "statisticPeriod": "ALL",
+  "triggerType": "SCHEDULE",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "6262_Test_WF",
+      "processingTemplate": "6262_Test_WF",
+      "processingType": "WORKFLOW",
+      "statisticMethod": "MEDIAN",
+      "statisticPeriod": "ALL",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "timeTriggers": 
+  [
+    {
+      "endTime": 86399999,
+      "repeatInterval": 3600000,
+      "startTime": 64800000,
+      "timeTriggerType": "DAILY",
+      "timeZone": "Europe/Warsaw"
+    }
+  ]
+}

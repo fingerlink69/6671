@@ -1,0 +1,14 @@
+{
+  "owner": "bien",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "INTERNAL",
+  "statisticMethod": "MEDIAN",
+  "statisticPeriod": "ALL",
+  "taskType": "AE_SCRIPT",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": ":P \"Test 0\"\n:SET &JSON# = '[{\"parent.u_administrator_group.u_searchcode\":\"GLOBAL-OPS.DATABASE.ORACLE\",\"parent.name\":\"VSPHR\"},{\"parent.u_administrator_group.u_searchcode\":\"GLOBAL-OPS.DATABASE.ORACLE\",\"parent.name\":\"AAASCX\"},{\"parent.u_administrator_group.u_searchcode\":\"GLOBAL-OPS.DATABASE.ORACLE\",\"parent.name\":\"AAAPRG\"}]'\n:SET &HNDW# = JSON_TO_PROCESS(&JSON#, \"$.*\")\n:PROCESS &HNDW#\n:  SET &LINE# = GET_PROCESS_LINE(&HNDW#)\n:  P \"LINE &LINE#\"\n:ENDPROCESS\n:CLOSE_PROCESS &HNDW#\n\n\n:P \"test 1\"\n:SET &JSON# = '${result}'\n:SET &HND# = JSON_TO_PROCESS(&JSON#, \"$.result.*\")\n:PROCESS &HND#\n:  SET &LINE# = GET_PROCESS_LINE(&HND#)\n:  P \"LINE &LINE#\"\n:ENDPROCESS\n:CLOSE_PROCESS &HND#\n\n\n:P \"test 2\"\n:SET &HND# = JSON_TO_PROCESS(&RESULT, \"$.result.*\")\n:PROCESS &HND#\n:  SET &LINE# = GET_PROCESS_LINE(&HND#)\n:  P \"LINE &LINE#\"\n:ENDPROCESS\n:CLOSE_PROCESS &HND#\n\n\n:P \"test 3\"\n:SET &HND# = JSON_TO_PROCESS(&result, \"$.result.*\")\n:PROCESS &HND#\n:  SET &LINE# = GET_PROCESS_LINE(&HND#)\n:  P \"LINE &LINE#\"\n:ENDPROCESS\n:CLOSE_PROCESS &HND#\n\n\n:P \"test 4\"\n! not working\n:SET &HND# = JSON_TO_PROCESS('${result}', \"$.result.*\")\n:PROCESS &HND#\n:  SET &LINE# = GET_PROCESS_LINE(&HND#)\n:  P \"LINE &LINE#\"\n:ENDPROCESS\n:CLOSE_PROCESS &HND#"
+  }
+}

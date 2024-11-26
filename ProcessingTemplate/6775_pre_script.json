@@ -1,0 +1,14 @@
+{
+  "owner": "bien",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "INTERNAL",
+  "statisticMethod": "MEDIAN",
+  "statisticPeriod": "ALL",
+  "taskType": "AE_SCRIPT",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": ":SET &JSON# = '[{\"parent.u_administrator_group.u_searchcode\":\"GLOBAL-OPS.DATABASE.ORACLE\",\"parent.name\":\"VSPHR\"},{\"parent.u_administrator_group.u_searchcode\":\"GLOBAL-OPS.DATABASE.ORACLE\",\"parent.name\":\"AAASCX\"},{\"parent.u_administrator_group.u_searchcode\":\"GLOBAL-OPS.DATABASE.ORACLE\",\"parent.name\":\"AAAPRG\"}]'\n:SET &HND# = JSON_TO_PROCESS(&JSON#, \"$.*\")\n:PROCESS &HND#\n:  SET &LINE# = GET_PROCESS_LINE(&HND#)\n:  P \"LINE &LINE#\"\n:ENDPROCESS\n:CLOSE_PROCESS &HND#"
+  }
+}
