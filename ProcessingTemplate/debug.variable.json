@@ -1,0 +1,18 @@
+{
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "IPC_SERVER_OS",
+  "owner": "ZEW_2_33407_A",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "taskType": "PYTHON",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "print('${TEST_VARIABLE}')"
+  }
+}
