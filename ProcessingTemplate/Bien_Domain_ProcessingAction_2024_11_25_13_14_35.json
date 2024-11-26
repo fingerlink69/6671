@@ -1,0 +1,48 @@
+
+[
+  {
+    "domainClass": "ProcessingAction",
+    "simpleId": "MonitorError.Anow.rta",
+    "processingActionSourceType": "USER",
+    "ruleDefinition": {
+      "processingType": "TASK",
+      "parentTemplateOperator": "EQUALS",
+      "nodeOperator": "EQUALS",
+      "tagOperator": "NONE",
+      "processingTemplateOperator": "CONTAINS",
+      "tags": 
+      [
+        "NotMonitored",
+        "Restart",
+        "Test",
+        "TestTrigger"
+      ]
+    },
+    "domain": "Bien_Domain",
+    "processingCommand": {
+      "timestampSelector": "SAME",
+      "processingTemplate": "WriteTaskErrorToLog.TaskMon.Anow.wst",
+      "actionTargetType": "SELF",
+      "includeContextVariables": true
+    },
+    "processingEventType": "PROCESSING_FAILED",
+    "condition": {
+      "criteria": 
+      [
+        {
+          "fieldName": "template",
+          "value": ".Anow.",
+          "operator": "NOT_CONTAIN"
+        }
+      ],
+      "operator": "AND"
+    },
+    "processingEventCategory": "PROCESSING",
+    "archived": false,
+    "processingActionOrder": 2,
+    "isRule": true,
+    "skip": false,
+    "processingActionType": "PROCESSING_RUN_NOW",
+    "processingActionSource": "dawiener (2.252.191.164)"
+  }
+]
