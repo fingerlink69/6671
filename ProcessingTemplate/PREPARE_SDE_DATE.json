@@ -1,0 +1,21 @@
+{
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "MONTH",
+  "node": "ROCHE_PD_S4",
+  "owner": "kowalck1",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "SNOWFLAKE",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "SDE"
+  ],
+  "taskType": "RDBMS_SQL",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "USE WAREHOUSE ${VAR_S4_VCLIN_SNOWFLAKE_WAREHOUSE};\nUSE ROLE ${VAR_S4_VCLIN_SNOWFLAKE_ROLE};\nUSE DATABASE ${SF_DB};\n\nLIST @${SF_DB}.ITR_RDS_VCLIN_STAGE.S3_VEEVA_STAGE/ScheduledDataExports/${VAR_S3_SDE_BUCKET_NUMBER}/\n;\n\nCreate or replace transient table ITR_RDS_VCLIN_STAGE.PREPARE_SDE_DATE\nAS\nSELECT $1 as S3_FILE_PATH from table(result_scan(-1));\n      "
+  }
+}
