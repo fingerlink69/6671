@@ -1,7 +1,7 @@
 {
   "description": "test for case 6734",
-  "onHold": true,
   "owner": "bien",
+  "preloadCounter": 1,
   "priority": "0",
   "processingType": "TRIGGER",
   "statisticMethod": "MEDIAN",
@@ -23,9 +23,11 @@
   "timeTriggers": 
   [
     {
+      "calendar": "MONDAY_TO_FRIDAY",
       "endTime": 86399999,
+      "passBy": true,
       "repeatInterval": 3600000,
-      "startTime": 64800000,
+      "startTime": 36000000,
       "timeTriggerType": "DAILY",
       "timeZone": "Europe/Warsaw"
     }
