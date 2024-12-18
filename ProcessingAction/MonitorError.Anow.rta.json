@@ -1,0 +1,37 @@
+{
+  "isRule": true,
+  "processingActionType": "PROCESSING_RUN_NOW",
+  "processingEventCategory": "PROCESSING",
+  "processingEventType": "PROCESSING_FAILED",
+  "condition": {
+    "criteria": 
+    [
+      {
+        "fieldName": "template",
+        "operator": "NOT_CONTAIN",
+        "value": ".Anow."
+      }
+    ],
+    "operator": "AND"
+  },
+  "processingCommand": {
+    "actionTargetType": "SELF",
+    "includeContextVariables": true,
+    "processingTemplate": "WriteTaskErrorToLog.TaskMon.Anow.wst",
+    "timestampSelector": "SAME"
+  },
+  "ruleDefinition": {
+    "nodeOperator": "EQUALS",
+    "parentTemplateOperator": "EQUALS",
+    "processingTemplateOperator": "CONTAINS",
+    "processingType": "TASK",
+    "tagOperator": "NONE",
+    "tags": 
+    [
+      "NotMonitored",
+      "Restart",
+      "Test",
+      "TestTrigger"
+    ]
+  }
+}
